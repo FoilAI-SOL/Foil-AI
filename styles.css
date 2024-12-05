@@ -87,8 +87,8 @@ nav .container {
 }
 
 .hero-logo {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   animation: float 3s ease-in-out infinite;
 }
