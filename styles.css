@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #0a0a0a;
   color: #ffffff;
   line-height: 1.6;
@@ -87,15 +87,14 @@ nav .container {
 }
 
 .hero-logo {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0);
   }
   50% {
@@ -107,15 +106,18 @@ h1 {
   font-size: 4rem;
   margin-bottom: 1rem;
   color: white;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3),
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.3),
     0 0 40px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  color: #888;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .buttons {
@@ -131,20 +133,24 @@ h1 {
   text-decoration: none;
   font-weight: 600;
   transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .btn:hover {
   transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .btn.primary {
-  background: linear-gradient(45deg, #3498db, #2ecc71);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .btn.secondary {
-  border: 2px solid #3498db;
-  color: #3498db;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 section {
@@ -155,6 +161,10 @@ h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
   text-align: center;
+  color: white;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .about-grid {
@@ -168,16 +178,20 @@ h2 {
   padding: 2rem;
   border-radius: 15px;
   transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-card:hover {
   transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .about-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #3498db;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .roadmap-grid {
@@ -191,12 +205,15 @@ h2 {
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .roadmap-card h3 {
   font-size: 2rem;
-  color: #3498db;
   margin-bottom: 1rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .social-links {
