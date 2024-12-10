@@ -1,139 +1,221 @@
-// Setup canvas
-const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
-
-// Set canvas size
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-// Particle properties
-const particles = [];
-const numParticles = 100;
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let mouseRadius = 100;
-
-// Create particles
-for(let i = 0; i < numParticles; i++) {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 1,
-        baseSpeed: Math.random() * 1 + 0.5,
-        angle: Math.random() * Math.PI * 2,
-        glowIntensity: Math.random() * 0.5 + 0.5,
-        color: `hsl(${Math.random() * 60 + 230}, 70%, 50%)`  // Blue to purple range
-    });
-}
-
-// Track mouse movement with smoothing
-let targetMouseX = mouseX;
-let targetMouseY = mouseY;
-document.addEventListener('mousemove', (e) => {
-    targetMouseX = e.clientX;
-    targetMouseY = e.clientY;
-});
-
-// Handle navigation background on scroll
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+{
+  "site": {
+    "name": "FoilAI",
+    "description": "Neural Intelligence Protocol",
+    "domain": "foilai.io",
+    "logo": "https://raw.githubusercontent.com/FoilAI-SOL/FoilAI/8d6ce1bc032240c7c37942fbfa37936d142a198e/tumblr_n5sgadiGtZ1qfjvexo1_500.gif",
+    "meta": {
+      "keywords": [
+        "AI",
+        "Neural Networks",
+        "Blockchain",
+        "Artificial Intelligence",
+        "Decentralized",
+        "Machine Learning"
+      ],
+      "author": "FoilAI Protocol",
+      "themeColor": "#000000"
+    },
+    "social": {
+      "twitter": "https://twitter.com/FoilAI",
+      "discord": "https://discord.gg/znhY2dwdzS"
     }
-});
+  },
 
-// Animation loop
-function animate() {
-    // Smooth mouse movement
-    mouseX += (targetMouseX - mouseX) * 0.1;
-    mouseY += (targetMouseY - mouseY) * 0.1;
+  "theme": {
+    "colors": {
+      "background": "#000000",
+      "primary": "#ffffff",
+      "accent": "rgba(255, 255, 255, 0.1)",
+      "border": "rgba(255, 255, 255, 0.1)",
+      "textPrimary": "#ffffff",
+      "textSecondary": "rgba(255, 255, 255, 0.7)"
+    },
+    "fonts": {
+      "primary": "JetBrains Mono",
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "bold": 700
+      }
+    },
+    "spacing": {
+      "navHeight": "80px",
+      "sectionPadding": "100px",
+      "containerMaxWidth": "1200px"
+    }
+  },
 
-    // Create semi-transparent background for trail effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach(particle => {
-        // Calculate distance from mouse
-        const dx = mouseX - particle.x;
-        const dy = mouseY - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        // Interactive behavior based on mouse proximity
-        if (distance < mouseRadius) {
-            const force = (mouseRadius - distance) / mouseRadius;
-            particle.x -= (dx / distance) * force * 5;
-            particle.y -= (dy / distance) * force * 5;
+  "navigation": {
+    "links": [
+      {
+        "label": "ABOUT",
+        "href": "#about"
+      },
+      {
+        "label": "FEATURES",
+        "href": "#features"
+      },
+      {
+        "label": "ROADMAP",
+        "href": "#roadmap"
+      },
+      {
+        "label": "COMMUNITY",
+        "href": "#community"
+      }
+    ]
+  },
+
+  "content": {
+    "hero": {
+      "title": "FoilAI",
+      "subtitle": "ARTIFICIAL INTELLIGENCE PROTOCOL",
+      "description": "Advanced Neural Networks / Blockchain Integration / Decentralized Intelligence",
+      "stats": [
+        {
+          "value": "1.28ms",
+          "label": "LATENCY"
+        },
+        {
+          "value": "99.99%",
+          "label": "UPTIME"
+        },
+        {
+          "value": "2.5M+",
+          "label": "TRANSACTIONS"
         }
-        
-        // Update particle position
-        particle.x += Math.cos(particle.angle) * particle.baseSpeed;
-        particle.y += Math.sin(particle.angle) * particle.baseSpeed;
-        
-        // Gradually change particle angle for organic movement
-        particle.angle += Math.random() * 0.1 - 0.05;
-        
-        // Wrap around screen
-        if(particle.x < 0) particle.x = canvas.width;
-        if(particle.x > canvas.width) particle.x = 0;
-        if(particle.y < 0) particle.y = canvas.height;
-        if(particle.y > canvas.height) particle.y = 0;
-        
-        // Draw particle with glow effect
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        
-        // Create gradient for glow effect
-        const gradient = ctx.createRadialGradient(
-            particle.x, particle.y, 0,
-            particle.x, particle.y, particle.size * 2
-        );
-        gradient.addColorStop(0, particle.color);
-        gradient.addColorStop(1, 'transparent');
-        
-        ctx.fillStyle = gradient;
-        ctx.globalAlpha = particle.glowIntensity;
-        ctx.fill();
-        ctx.restore();
-    });
-    
-    requestAnimationFrame(animate);
+      ],
+      "buttons": [
+        {
+          "label": "PURCHASE",
+          "href": "https://pump.fun",
+          "type": "primary"
+        },
+        {
+          "label": "LEARN MORE",
+          "href": "#about",
+          "type": "secondary"
+        }
+      ]
+    },
+
+    "about": {
+      "title": "SYSTEM ARCHITECTURE",
+      "cards": [
+        {
+          "id": "01",
+          "title": "Neural Core",
+          "description": "Advanced machine learning algorithms enabling next-generation decentralized computation and decision-making processes."
+        },
+        {
+          "id": "02",
+          "title": "Blockchain Layer",
+          "description": "High-performance distributed ledger technology ensuring immutable and transparent network operations."
+        },
+        {
+          "id": "03",
+          "title": "Quantum Security",
+          "description": "Post-quantum cryptographic protocols protecting against advanced computational threats."
+        }
+      ]
+    },
+
+    "features": {
+      "title": "CORE FEATURES",
+      "items": [
+        {
+          "title": "Recursive Learning",
+          "description": "Self-improving neural networks with blockchain-verified training data and autonomous optimization protocols."
+        },
+        {
+          "title": "Swarm Intelligence",
+          "description": "Distributed consensus mechanisms enabling collective decision-making across the network."
+        },
+        {
+          "title": "Adaptive Systems",
+          "description": "Real-time system adaptation based on network conditions and computational requirements."
+        }
+      ]
+    },
+
+    "roadmap": {
+      "title": "ROADMAP",
+      "phases": [
+        {
+          "title": "2024 WINTER",
+          "items": [
+            "Neural network initialization",
+            "Blockchain integration",
+            "Base security implementation"
+          ]
+        },
+        {
+          "title": "2025 SPRING",
+          "items": [
+            "Advanced AI modules",
+            "Cross-chain compatibility",
+            "Quantum security layer"
+          ]
+        },
+        {
+          "title": "2025 SUMMER",
+          "items": [
+            "Autonomous governance",
+            "Global node network",
+            "Advanced synthetics"
+          ]
+        }
+      ]
+    },
+
+    "community": {
+      "title": "JOIN THE NETWORK",
+      "links": [
+        {
+          "platform": "Twitter",
+          "url": "https://twitter.com/FoilAI",
+          "label": "TWITTER"
+        },
+        {
+          "platform": "Discord",
+          "url": "https://discord.gg/znhY2dwdzS",
+          "label": "DISCORD"
+        }
+      ]
+    }
+  },
+
+  "footer": {
+    "text": "FoilAI Protocol",
+    "version": "Version 1.0.0",
+    "copyright": "© 2024 FoilAI. All rights reserved."
+  },
+
+  "animations": {
+    "neural": {
+      "nodes": {
+        "count": 100,
+        "size": {
+          "min": 1,
+          "max": 3
+        },
+        "speed": 0.5,
+        "color": "#ffffff"
+      },
+      "connections": {
+        "maxDistance": 150,
+        "lineWidth": 1,
+        "opacity": 0.2
+      }
+    },
+    "transitions": {
+      "speed": "0.3s",
+      "timing": "ease"
+    },
+    "hover": {
+      "scale": 1.02,
+      "duration": "0.3s"
+    }
+  }
 }
-
-animate();
-
-// Smooth scroll with enhanced easing
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        const startPosition = window.pageYOffset;
-        const targetPosition = target.getBoundingClientRect().top + startPosition;
-        const distance = targetPosition - startPosition;
-        let startTime = null;
-        
-        function animation(currentTime) {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            const run = ease(timeElapsed, startPosition, distance, 1000);
-            window.scrollTo(0, run);
-            if (timeElapsed < 1000) requestAnimationFrame(animation);
-        }
-        
-        function ease(t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t + b;
-            t--;
-            return -c / 2 * (t * (t - 2) - 1) + b;
-        }
-        
-        requestAnimationFrame(animation);
-    });
-});
